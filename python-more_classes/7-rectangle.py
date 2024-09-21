@@ -26,7 +26,7 @@ class Rectangle:
             raise ValueError("width must be >= 0")
         self.__width = width
         Rectangle.number_of_instances += 1
-
+    
     @property
     def width(self):
         return self.__width
@@ -66,8 +66,8 @@ class Rectangle:
             return a
         else:
             for i in range(self.__height - 1):
-                a += Rectangle.print_symbol * self.__width + "\n"
-            a += Rectangle.print_symbol * self.__width
+                a += str(self.print_symbol) * self.__width + "\n"
+            a += str(self.print_symbol) * self.__width
         return a
 
     def __repr__(self):
