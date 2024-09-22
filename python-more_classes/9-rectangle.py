@@ -60,6 +60,12 @@ class Rectangle:
         else:
             return 2 * (self.__width + self.__height)
 
+    @classmethod
+    def square(cls, size=0):
+        if size < 0:
+            raise ValueError("width must be and integer")
+        return cls(size, size)
+
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
         if not isinstance(rect_1, Rectangle):
@@ -71,10 +77,6 @@ class Rectangle:
         if rect_1.area() > rect_2.area():
             return rect_1
         rect_2
-
-    @classmethod
-    def square(cls, size=0):
-        return cls(size, size)
 
     def __str__(self):
         a = ""
