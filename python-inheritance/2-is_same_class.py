@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This module defines a class MyList with inheritance of list.
+This module defines a function that returns True if the object is exactly an
+instance of the specified class ; otherwise False.
 """
 
 
