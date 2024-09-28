@@ -1,10 +1,13 @@
 #!/usr/bin/python3
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
 """
 This module defines a Rectangle class that inherits from BaseGeometry.
 The Rectangle class represents a rectangle defined by its width and height,
 both of which must be positive integers.
 """
+
+
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):
