@@ -20,8 +20,8 @@ class Rectangle(BaseGeometry):
         Initialize a new instance of Rectangle.
 
         """
-        self.integer_validator("width", width)
-        self.integer_validator("height", height)
+        super().integer_validator("width", width)
+        super().integer_validator("height", height)
         self.__width = width
         self.__height = height
 
@@ -29,7 +29,7 @@ class Rectangle(BaseGeometry):
         """
         Method that return the area of the rectangle
         """
-        return (self.__width * self.__height)
+        return self.__width * self.__height
 
     def __str__(self):
 
