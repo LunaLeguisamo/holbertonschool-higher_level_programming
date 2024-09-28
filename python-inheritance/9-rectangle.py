@@ -11,53 +11,36 @@ BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):
+    
     """
     Class Rectangle that inherits from BaseGeometry.
 
-    This class represents a rectangle and includes validation for its width
-    and height. The rectangle is initialized with a specific width and height,
-    which must be positive integers. The class leverages the integer_validator
-    method from the BaseGeometry class to ensure the integrity of these values.
-
-    Attributes:
-        __width (int): The width of the rectangle. It must be a
-        positive integer.
-        __height (int): The height of the rectangle. It must also
-        be a positive integer.
     """
+    
     def __init__(self, width=0, height=0):
+        
         """
         Initialize a new instance of Rectangle.
 
-        The constructor accepts two parameters, width and height, which are
-        validated using the integer_validator method from the BaseGeometry
-        class.
-        If the validation fails, appropriate exceptions are raised.
-
-        Args:
-            width (int): The width of the rectangle. Must be a positive
-            integer.
-            height (int): The height of the rectangle. Must be a positive
-            integer.
-
-        Raises:
-            TypeError: If either width or height is not an integer.
-            ValueError: If either width or height is less than or
-            equal to zero.
         """
-        super().integer_validator("width", width)
+        
+        self.integer_validator("width", width)
+        self.integer_validator("height", height)
         self.__width = width
-        super().integer_validator("height", height)
         self.__height = height
 
-        def area(self):
-            """
-            Method that return the area of the rectangle
-            """
-            return (self.__height * self.__width)
+    def area(self):
+            
+        """
+        Method that return the area of the rectangle
+        """
+            
+        return (self.__width * self.__height)
 
-        def __str__(self, width, height):
-            """
-            Method str that print
-            """
-            print("[Rectangle] {self.__widht}/{self.__height}")
+    def __str__(self):
+
+        """
+        Method str that print
+        """
+            
+        return ("[Rectangle] {:d}/{:d}" .format(self.__width, self.__height))
