@@ -22,10 +22,10 @@ class Circle(Shape):
         self.radius = radius
 
     def area(self):
-        return math.pi * (self.radius ** 2)
+        return math.pi * (self.radius ** 2) if self.radius >= 0 else 0
 
     def perimeter(self):
-        return (2 * math.pi) * self.radius
+        return (2 * math.pi) * self.radius if self.radius >= 0 else 0
 
 
 class Rectangle(Shape):
