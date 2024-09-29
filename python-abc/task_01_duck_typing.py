@@ -31,7 +31,7 @@ class Circle(Shape):
 class Rectangle(Shape):
 
     def __init__(self, width, height):
-        if width == 0 or height == 0:
+        if width < 0 or height < 0:
             raise ValueError("Width and height values must be positives")
         self.width = width
         self.height = height
