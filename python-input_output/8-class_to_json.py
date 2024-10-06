@@ -6,6 +6,7 @@ dictionary description with simple data structure
 JSON serialization of an object
 """
 
+
 import json
 
 
@@ -14,4 +15,4 @@ def class_to_json(obj):
     class with inheritance
     """
 
-    return json.dumps(obj.__dict__)
+    return vars(obj)
