@@ -9,7 +9,7 @@ import json
 
 def serialize_and_save_to_file(data, filename):
     with open(filename, "w") as file:
-        json.dumps(data)
+        json.dump(data)
 
 
 def load_and_deserialize(filename):
