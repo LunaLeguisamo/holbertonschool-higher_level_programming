@@ -23,10 +23,10 @@ class CustomObject:
         try:
             with open(filename, "wb") as file:
                 pickle.dump(self, file)
-
+      
         except EOFError:
             raise ("Ran out of input")
-        return None
+            return None
 
     @classmethod
     def deserialize(cls, filename):
