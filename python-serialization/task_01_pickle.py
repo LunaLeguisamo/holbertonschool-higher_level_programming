@@ -25,7 +25,7 @@ class CustomObject:
                 pickle.dump(self, file)
 
         except EOFError:
-            raise ("File error")
+            raise ("Ran out of input")
         return None
 
     @classmethod
