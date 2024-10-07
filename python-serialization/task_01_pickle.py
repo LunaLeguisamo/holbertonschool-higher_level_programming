@@ -35,5 +35,5 @@ class CustomObject:
                 return pickle.load(file)
 
         except EOFError:
-            raise ValueError("Corrupt file")
+            raise ("Ran out of input")
         return None
