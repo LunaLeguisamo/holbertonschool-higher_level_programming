@@ -11,7 +11,7 @@ import csv
 def fetch_and_print_posts():
     data = ""
     r = requests.get('https://jsonplaceholder.typicode.com/posts')
-    print(r.status_code)
+    print("Status Code:", r.status_code)
 
     if r.status_code == 200:
         data = r.json()
@@ -23,7 +23,7 @@ def fetch_and_print_posts():
 def fetch_and_save_posts():
     data = ""
     r = requests.get('https://jsonplaceholder.typicode.com/posts')
-
+    
     if r.status_code == 200:
         data = r.json()
 
