@@ -17,6 +17,7 @@ users = {
       }
 
 @app.route("/data", methods=["POST", "GET"])
+@auth.login_required
 def verify(username, password):
     if username in users and check_password_hash(users['password'], password):
         return users['username']
