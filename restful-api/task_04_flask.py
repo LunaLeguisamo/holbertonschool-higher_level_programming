@@ -8,8 +8,8 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 users_list = {
-        "jane": {"username": "jane", "name": "Jane", "age": 28, "city": "Los Angeles"},
-        "john": {"username": "john", "name": "John", "age": 30, "city": "New York"}
+        "luna": {"username": "luna", "name": "Luna", "age": 26, "city": "Montevideo"},
+        "owen": {"username": "owen", "name": "Owen", "age": 30, "city": "New York"}
         }
 @app.route("/")
 def home():
@@ -29,23 +29,22 @@ def users(username):
     if username_:
         return jsonify(username_)
     else:
-        return {"error": "User not found"}
-
-with app.add_request_context('/add_user', method='POST'):
-    assert request.path == '/add_user'
-    assert request.method == 'POST'
+        return jsonify({"error": "User not found"})
     
-    @app.route('/login', methods=['POST', 'GET'])
-def login():
-    error = None
-    if request.method == 'POST':
-        if valid_login(request.form['username'],
-                       request.form['password']):
-            return log_the_user_in(request.form['username'])
-        else:
-            error = 'Invalid username/password'
-    # the code below is executed if the request method
-    # was GET or the credentials were invalid
-    return render_template('login.html', error=error)
+@app.route("/add_user", methods=["POST"])
+def add():
+    new_user = request.get_json()
+    user = new_user['username']
+    name = new_user['name']
+    age = new_user['age']
+    city = new_user['city']
+    if not isinstance(user, str):
+        return jsonify({"error": "User not found"})
+    
+    users_list[user] = {"username": user, "name": name, "age": age, "city": city}
+    message = {"message": "User added", "user":users_list[user]}
+    
+    return jsonify(message)
+    
 if __name__ == "__main__":
     app.run()
