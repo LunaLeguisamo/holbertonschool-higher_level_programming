@@ -7,10 +7,8 @@ Module that def a function
 from flask import Flask, jsonify, request
 app = Flask(__name__)
 
-users_list = {
-        "luna": {"username": "luna", "name": "Luna", "age": 26, "city": "Montevideo"},
-        "owen": {"username": "owen", "name": "Owen", "age": 30, "city": "New York"}
-        }
+users_list = {}
+
 @app.route("/")
 def home():
     return "Welcome to the Flask API!", 200
