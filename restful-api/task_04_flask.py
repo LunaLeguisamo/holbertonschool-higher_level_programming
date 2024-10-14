@@ -29,7 +29,7 @@ def users(username):
     if username_:
         return jsonify(username_), 200
     else:
-        return jsonify({"error": "User not found"}), 400
+        return jsonify({"error": "User not found"}), 404
     
 @app.route("/add_user", methods=["POST"])
 def add():
@@ -38,9 +38,12 @@ def add():
     name = new_user['name']
     age = new_user['age']
     city = new_user['city']
-    if not isinstance(user, str) or not user:
+    if not new_user or 'username' not in new_user:
         return jsonify({"error": "Username is required"}), 400
-
+    
+    if user in users_list:
+        return jsonify({"error": "User already exist"}), 400
+        
     users_list[user] = {"city": city, "age": age, "name": name, "username": user}
     message = {"message": "User added", "user":users_list[user]}
     
