@@ -36,7 +36,7 @@ def add():
     name = new_user['name']
     age = new_user['age']
     city = new_user['city']
-    if not isinstance(users, str) or not user:
+    if not isinstance(user, str) or not user:
         return jsonify({"error": "Username is required"}), 400
         
     users_list[user] = {"city": city, "age": age, "name": name, "username": user}
