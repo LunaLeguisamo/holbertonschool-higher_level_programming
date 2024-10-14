@@ -38,13 +38,13 @@ def add():
     name = new_user['name']
     age = new_user['age']
     city = new_user['city']
-    if not isinstance(user, str):
+    if not isinstance(user, str) or not user:
         return jsonify({"error": "Username is required"}), 400
 
     users_list[user] = {"city": city, "age": age, "name": name, "username": user}
     message = {"message": "User added", "user":users_list[user]}
     
-    return jsonify(message), 200
+    return jsonify(message), 201
     
 if __name__ == "__main__":
     app.run()
