@@ -38,7 +38,7 @@ def login():
 
     if not check_password_hash(user['password'], r.get('password')):
         return jsonify({"error": "Wrong password"}), 403
-    payload = {'username': users['username'], 'role': users['role']}
+    payload = {'username': user['username'], 'role': user['role']}
     token = create_access_token(identity=payload)
     return jsonify(token=token)
 
@@ -50,7 +50,7 @@ def basic_prot():
 @app.route("/jwt-protected")
 @jwt_required()
 def prot():
-    return jsonify({"JWT Auth: Access Granted"})
+    return "JWT Auth: Access Granted"
 
 @app.route("/admin-only", methods=["GET"])
 @jwt_required()
