@@ -14,12 +14,13 @@ import jwt
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 jwt = JWTManager(app)
-app.config['JWT_SECRET_KEY'] = '10'
+app.config['JWT_SECRET_KEY'] = 'SuperSecretKey'
 
 users = {
       "user1": {"username": "user1", "password": generate_password_hash("password"), "role": "user"},
       "admin1": {"username": "admin1", "password": generate_password_hash("password"), "role": "admin"}
       }
+
 
 @auth.verify_password
 def verify_password(username, password):
@@ -28,58 +29,68 @@ def verify_password(username, password):
         return user
     return None
 
+
 @app.route("/login", methods=["POST"])
 def login():
     r = request.get_json()
     user = users.get(r.get('username'))
     
     if user is None:
-        return jsonify({"error": "User not found"}), 404
+        return "error:" "User not found", 404
 
     if not check_password_hash(user['password'], r.get('password')):
-        return jsonify({"error": "Wrong password"}), 403
+        return jsonify({"error": "Invalid credentials"}), 401
     payload = {'username': user['username'], 'role': user['role']}
     token = create_access_token(identity=payload)
-    return jsonify(token=token)
+    return jsonify(token=token), 200
+
 
 @app.route("/basic-protected", methods=["GET"])
 @auth.login_required
 def basic_prot():
-    return "Basic Auth: Access Granted"
+    return "Basic Auth: Access Granted", 200
+
 
 @app.route("/jwt-protected")
 @jwt_required()
 def prot():
-    return "JWT Auth: Access Granted"
+    return "JWT Auth: Access Granted", 200
+
 
 @app.route("/admin-only", methods=["GET"])
 @jwt_required()
 def admin():
     current_user = get_jwt_identity()
     if current_user['role'] == 'admin':
-        return "Admin Access: Granted"
+        return "Admin Access: Granted", 200
     else:
         return jsonify({"error": "Admin access required"}), 403
 
+
 @jwt.unauthorized_loader
 def handle_unauthorized_error(err):
-      return jsonify({"error": "Missing or invalid token"}), 401
+    return jsonify({"error": "Missing or invalid token"}), 401
+
 
 @jwt.invalid_token_loader
 def handle_invalid_token_error(err):
-      return jsonify({"error": "Invalid token"}), 401
+    return jsonify({"error": "Invalid token"}), 401
+
 
 @jwt.expired_token_loader
 def handle_expired_token_error(err):
-      return jsonify({"error": "Token has expired"}), 401
+    return jsonify({"error": "Token has expired"}), 401
+
 
 @jwt.revoked_token_loader
 def handle_revoked_token_error(err):
     return jsonify({"error": "Token has been revoked"}), 401
 
+
 @jwt.needs_fresh_token_loader
 def handle_needs_fresh_token_error(err):
     return jsonify({"error": "Fresh token required"}), 401
+
 
 if __name__ == "__main__":
     app.run(debug=True)
