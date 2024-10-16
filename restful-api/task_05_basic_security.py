@@ -26,8 +26,8 @@ users = {
 def verify_password(username, password):
     user = users.get(username)
     if user and check_password_hash(user['password'], password):
-        return user
-    return None
+        return "Basic Auth: Access Granted", 200
+    return "401 Unauthorized", 401
 
 
 @app.route("/login", methods=["POST"])
@@ -48,7 +48,7 @@ def login():
 @app.route("/basic-protected", methods=["GET"])
 @auth.login_required
 def basic_prot():
-    return "Basic Auth: Access Granted", 200
+    return auth.current_user()
 
 
 @app.route("/jwt-protected")
