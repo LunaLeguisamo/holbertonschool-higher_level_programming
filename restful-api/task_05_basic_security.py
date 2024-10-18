@@ -42,7 +42,7 @@ def login():
         return {"error": "Invalid credentials"}, 401
     payload = {'username': user['username'], 'role': user['role']}
     token = create_access_token(identity=payload)
-    return jsonify(token=token), 200
+    return jsonify({"access_token": token}), 200
 
 
 @app.route("/jwt-protected")
