@@ -26,8 +26,7 @@ users = {
 def verify_password(username, password):
     user = users.get(username)
     if user and check_password_hash(user['password'], password):
-        return "Basic Auth: Access Granted", 200
-    return "401 Unauthorized", 401
+        return username
 
 @app.route('/basic-protected')
 @auth.login_required
@@ -38,12 +37,9 @@ def basic_prot():
 def login():
     r = request.get_json()
     user = users.get(r.get('username'))
-    
-    if user is None:
-        return "error:" "User not found", 404
 
-    if not check_password_hash(user['password'], r.get('password')):
-        return jsonify({"error": "Invalid credentials"}), 401
+    if not user or not check_password_hash(user['password'], r.get('password')):
+        return {"error": "Invalid credentials"}, 401
     payload = {'username': user['username'], 'role': user['role']}
     token = create_access_token(identity=payload)
     return jsonify(token=token), 200
@@ -91,4 +87,4 @@ def handle_needs_fresh_token_error(err):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
