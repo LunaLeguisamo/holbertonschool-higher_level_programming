@@ -48,7 +48,7 @@ def login():
 @app.route("/basic-protected", methods=["GET"])
 @auth.login_required
 def basic_prot():
-    return auth.current_user()
+    return "Basic Auth: Access Granted", 200
 
 
 @app.route("/jwt-protected")
