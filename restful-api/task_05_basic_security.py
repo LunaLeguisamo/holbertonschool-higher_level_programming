@@ -29,6 +29,10 @@ def verify_password(username, password):
         return "Basic Auth: Access Granted", 200
     return "401 Unauthorized", 401
 
+@app.route('/basic-protected')
+@auth.login_required
+def basic_prot():
+    return "Basic Auth: Access Granted", 200
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -43,12 +47,6 @@ def login():
     payload = {'username': user['username'], 'role': user['role']}
     token = create_access_token(identity=payload)
     return jsonify(token=token), 200
-
-
-@app.route("/basic-protected", methods=["GET"])
-@auth.login_required
-def basic_prot():
-    return "Basic Auth: Access Granted", 200
 
 
 @app.route("/jwt-protected")
