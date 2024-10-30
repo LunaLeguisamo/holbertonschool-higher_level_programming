@@ -2,4 +2,4 @@
 SELECT score, name
 WHERE name IS NOT null
 FROM second_table
-ORDER BY DESC;
+ORDER BY second_table DESC;
