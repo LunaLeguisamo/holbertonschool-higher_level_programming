@@ -27,7 +27,7 @@ def main():
         )
 
     cursor = db.cursor()
-    cursor.execute(sql_query, (name,))
+    cursor.execute(sql_query)
 
     states = cursor.fetchall()
 
