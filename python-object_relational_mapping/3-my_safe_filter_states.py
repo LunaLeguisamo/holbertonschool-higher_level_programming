@@ -22,7 +22,7 @@ def main():
     db = MySQLdb.connect(host="localhost", port=3306, user=username,
                          password=password, database=database)
 
-    sql_query = "SELECT * FROM states WHERE BINARY name = '%s' ORDER BY id ASC"
+    sql_query = "SELECT * FROM states WHERE BINARY name = %s ORDER BY id ASC"
 
     cursor = db.cursor()
     cursor.execute(sql_query, (name,))
