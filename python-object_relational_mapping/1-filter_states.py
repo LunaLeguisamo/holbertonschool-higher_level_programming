@@ -23,7 +23,7 @@ def main():
     cursor = db.cursor()
 
     cursor.execute(
-        "SELECT * FROM states WHERE BINARY nameLIKE 'N%' ORDER BY id ASC"
+        "SELECT * FROM states WHERE BINARY name LIKE 'N%' ORDER BY id ASC"
         )
 
     states = cursor.fetchall()
