@@ -1,11 +1,15 @@
 #!/usr/bin/python3
 import MySQLdb
 import sys
-
+"""
+This module create a function that manipulate database with python
+"""
 
 def main():
-    """
-    Module
+    """Fetches and lists all states from the hbtn_0e_0_usa database.
+    This script connects to a MySQL database and retrieves all entries
+    from the 'states' table, ordered by the state ID. It expects three
+    command line arguments: MySQL username, password, and database name.
     """
 
     username = sys.argv[1]
