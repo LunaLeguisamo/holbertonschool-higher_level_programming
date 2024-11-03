@@ -23,7 +23,7 @@ def main():
                          password=password, database=database)
 
     sql_query = (
-        "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
+        "SELECT * FROM states WHERE name = {} ORDER BY id ASC".format(name)
         )
 
     cursor = db.cursor()
