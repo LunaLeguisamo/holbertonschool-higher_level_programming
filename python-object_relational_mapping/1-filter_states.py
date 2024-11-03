@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-This module create a function that manipulate database with python
+This module connects to a MySQL database and retrieves all states
+with names starting with 'N'.
 """
 
 import sys
@@ -9,7 +10,7 @@ import MySQLdb
 
 def main():
     """
-    Module
+    Main function to fetch and display states starting with 'N'.
     """
 
     username = sys.argv[1]
@@ -19,7 +20,7 @@ def main():
     db = MySQLdb.connect(host="localhost", port=3306,
                          user=username, password=password, db=database)
 
-    cursor = db.cursor
+    cursor = db.cursor()
     cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
     states = cursor.fetchall()
 
