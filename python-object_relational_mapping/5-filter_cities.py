@@ -18,7 +18,7 @@ def main():
     database = sys.argv[3]
     name = sys.argv[4]
 
-    db = MySQLdb.connect(host="localhost", port=3306, username=username,
+    db = MySQLdb.connect(host="localhost", port=3306, user=username,
                          password=password, database=database)
 
     sql_query = """
