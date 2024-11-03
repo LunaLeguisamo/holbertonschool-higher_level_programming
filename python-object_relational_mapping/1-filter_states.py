@@ -21,9 +21,9 @@ def main():
                          user=username, password=password, db=database)
 
     cursor = db.cursor()
-    
+
     cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
-    
+
     states = cursor.fetchall()
 
     for state in states:
@@ -31,6 +31,7 @@ def main():
 
     cursor.close()
     db.close()
+
 
 if __name__ == "__main__":
     main()
