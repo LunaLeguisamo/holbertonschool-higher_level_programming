@@ -24,8 +24,7 @@ def main():
     states = cursor.fetchall()
 
     for state in states:
-        if state.name[0] == 'N':
-            print(state)
+        print(state)
 
     cursor.close()
     db.close()
