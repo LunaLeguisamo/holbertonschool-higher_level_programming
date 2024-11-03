@@ -3,6 +3,12 @@ import MySQLdb
 import sys
 
 def main():
+    """Fetches and lists all states from the hbtn_0e_0_usa database.
+
+    This script connects to a MySQL database and retrieves all entries
+    from the 'states' table, ordered by the state ID. It expects three 
+    command line arguments: MySQL username, password, and database name.
+    """
     #obtener argumentos de la linea de comandos
     username = sys.argv[1]
     password = sys.argv[2]
