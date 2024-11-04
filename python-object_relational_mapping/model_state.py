@@ -1,7 +1,11 @@
 #!/usr/bin/python3
 """
-Module
+Module to define a State class and create a MySQL table.
+This script connects to a MySQL database and creates a table
+to store states using SQLAlchemy.
 """
+
+
 import sys
 import MySQLdb
 from sqlalchemy import Column, Integer, String, create_engine
@@ -11,6 +15,7 @@ Base = declarative_base()
 
 
 class State(Base):
+    """Define the State class to map to the 'states' table in the database."""
     __tablename__ = 'states'
     id = Column(Integer, autoincrement=1, unique=True, primary_key=True)
     name = Column(String(128), nullable=False)
