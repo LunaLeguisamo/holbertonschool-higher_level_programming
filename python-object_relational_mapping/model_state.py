@@ -21,8 +21,7 @@ class State(Base):
         Integer,
         autoincrement=True,
         unique=True,
-        primary_key=True,
-        insert_default=1
+        primary_key=True
         )
     name = Column(String(128), nullable=False)
 
