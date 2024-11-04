@@ -22,7 +22,7 @@ class State(Base):
         autoincrement=1,
         unique=True,
         primary_key=True,
-        default=1
+        insert_default=1
         )
     name = Column(String(128), nullable=False)
 
