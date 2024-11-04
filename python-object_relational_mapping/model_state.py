@@ -19,7 +19,7 @@ class State(Base):
     __tablename__ = 'states'
     id = Column(
         Integer,
-        autoincrement=1,
+        autoincrement=True,
         unique=True,
         primary_key=True,
         insert_default=1
