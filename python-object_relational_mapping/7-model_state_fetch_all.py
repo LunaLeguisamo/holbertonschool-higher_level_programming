@@ -17,10 +17,9 @@ def main():
     password = sys.argv[2]
     database = sys.argv[3]
 
-    db = MySQLdb.connect(host="localhost", port=3306, user=username,
-                         password=password, database=database)
-
-    engine = create_engine('sqlite://')
+    engine = create_engine(
+        f'mysql+mysqldb://{username}:{password}@localhost/{database}'
+        )
     Base.metadata.create_all(engine)
 
     Session = sessionmaker(bind=engine)
