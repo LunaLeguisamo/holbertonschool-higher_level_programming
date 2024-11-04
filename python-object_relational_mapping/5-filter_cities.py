@@ -33,8 +33,7 @@ def main():
     cursor.execute(sql_query, (name,))
     cities = cursor.fetchall()
 
-    for city in cities:
-        print(city)
+    print(",".join(city[0] for city in cities))
 
     cursor.close()
     db.close()
