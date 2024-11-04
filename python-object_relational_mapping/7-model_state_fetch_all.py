@@ -28,7 +28,7 @@ def main():
     Session = sessionmaker()
     Session.configure(bind=engine)
     session = Session()
-    states = session.query(State).order_by(State.id).all
+    states = session.query(State).order_by(State.id).all()
     for state in states:
         print("{}: {}".format(state.id, state))
 
