@@ -3,7 +3,6 @@
 module
 """
 import sys
-import MySQLdb
 from model_state import Base, State
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -25,12 +24,12 @@ def main():
     Base.metadata.create_all(engine)
 
     Session = sessionmaker(bind=engine)
-    Session = sessionmaker()
-    Session.configure(bind=engine)
     session = Session()
     states = session.query(State).order_by(State.id).all()
     for state in states:
         print("{}: {}".format(state.id, state))
+
+    session.close()
 
 
 if __name__ == "__main__":
