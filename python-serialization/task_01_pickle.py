@@ -31,3 +31,4 @@ class CustomObject:
 
         except EOFError:
             return None
+
